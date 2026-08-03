@@ -1,0 +1,44 @@
+public class QueueLinkedList {
+
+    private Node front;
+    private Node rear;
+    
+    public QueueLinkedList() {
+        front = null;
+        rear = null;
+    }
+    
+    public boolean isEmpty() {
+        return front == null;
+    }
+    
+    public void enqueue(int value) {
+        Node newNode = new Node(value);
+        if (isEmpty()) {
+            front = newNode;
+            rear = newNode;
+        } else {
+            rear.next = newNode;
+            rear = newNode;
+        }
+    }
+    
+    public int peek() {
+        if (!isEmpty()) {
+            return front.data;
+        }
+        return -1;
+    }
+    
+    public int dequeue() {
+        if (!isEmpty()) {
+            int temp_data = front.data;
+            front = front.next;
+            if (front == null) {
+                rear = null;
+            }
+            return temp_data;
+        }
+        return -1;
+    }
+}
