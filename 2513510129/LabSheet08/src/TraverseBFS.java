@@ -1,0 +1,42 @@
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Queue;
+
+public class TraverseBFS {
+
+	public static void main(String[] args) {
+		BinaryTree tree = new BinaryTree();
+		tree.createTree1();
+		tree.printTree(tree.getRoot(), 0);
+		System.out.println();
+		System.out.println("Postorder = " + traversal(tree.getRoot()));
+		// correct Answer = 50 10 22 11 12 24 23
+
+	}
+	public static ArrayList<Integer> traversal(Node node) {
+	    ArrayList<Integer> list = new ArrayList<Integer>();
+
+	    if (node != null) {
+	        Queue<Node> queue = new ArrayDeque<Node>();
+	        queue.add(node);
+	        
+
+	        while (!queue.isEmpty()) {
+	            Node current_node = queue.poll();
+	            list.add(current_node.data);
+
+	            if (current_node.left != null) {
+	                queue.add(current_node.left);
+	            }
+
+	            if (current_node.right != null) {
+	                queue.add(current_node.right);
+	            }
+	            list.add(node.data);
+	        }
+	    }
+
+	    return list;
+	}
+
+}
